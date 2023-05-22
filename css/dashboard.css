@@ -2,6 +2,10 @@ body {
   font-size: .875rem;
 }
 
+hr{
+	color: #fff !important;
+}
+
 .feather {
   width: 16px;
   height: 16px;
@@ -89,4 +93,44 @@ body {
 .form-control-dark:focus {
   border-color: transparent;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+}
+
+.nav-pills li:hover {
+  background: #1A1A1A !important;
+  border-radius: 7px;
+}
+/* Left Side */
+
+.notetitle{
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.pt-3.notetitle .feather {
+  width: 18px !important;
+  height: 25px !important;
+  margin-right: 5px;
+}
+
+.card.note {
+  border: none;
+  border-radius: unset;
+  background: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  cursor: pointer;
+}
+.card.note:hover{
+  background: #262626;
+}
+.card.note p{
+  color: #aba9a9;
+  font-size: 12px;
+}
+
+.card.note span{
+  font-style: italic;
+  font-size: 11px;
+  color: #aba9a9;
 }

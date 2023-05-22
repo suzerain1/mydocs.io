@@ -1,51 +1,40 @@
-/* globals Chart:false, feather:false */
 
-(() => {
-  'use strict'
+$(document).ready(function(){
 
   feather.replace({ 'aria-hidden': 'true' })
 
-  // Graphs
-  const ctx = document.getElementById('myChart')
-  // eslint-disable-next-line no-unused-vars
-  const myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: [
-        'Sunday',
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday'
-      ],
-      datasets: [{
-        data: [
-          15339,
-          21345,
-          18483,
-          24003,
-          23489,
-          24092,
-          12034
-        ],
-        lineTension: 0,
-        backgroundColor: 'transparent',
-        borderColor: '#007bff',
-        borderWidth: 4,
-        pointBackgroundColor: '#007bff'
-      }]
-    },
-    options: {
-      plugins: {
-        legend: {
-          display: false
-        },
-        tooltip: {
-          boxPadding: 3
-        }
-      }
-    }
-  })
-})()
+  //Note Content
+  $('ul.nav li a').click(function() {
+    $('ul.nav li').removeClass('nav-item');
+    $('ul.nav li a').removeClass('active');
+    $(this).addClass('active');
+    $(this).parent().addClass('nav-item');
+  });
+
+  function viewnotes(){
+    db.collection('notes')
+    .get()
+    .then(function(querySnapshot) {
+      var notelists = '';
+      querySnapshot.forEach(function(doc) {
+        var milliseconds1 = doc.data().credate.seconds * 1000 + Math.floor(doc.data().credate.nanoseconds / 1000000);
+        var milliseconds2 = doc.data().upddate.seconds * 1000 + Math.floor(doc.data().upddate.nanoseconds / 1000000);
+        notelists += '<div class="card note">';
+        notelists += '<div class="card-body">';
+        notelists += '<h6 class="card-title">'+doc.data().title+'</h6>';
+        notelists += '<p class="card-text">'+doc.data().desc.substring(0, 90)+'...</p>';
+        notelists += '<span>Added: '+moment(milliseconds1).format('YYYY-MM-DD HH:mm:ss')+'</span><br>';
+        notelists += '<span>Updated: '+moment(milliseconds2).format('YYYY-MM-DD HH:mm:ss')+'</span>';
+        notelists += '</div>';
+        notelists += '</div>';
+      });
+      $('.notelists').html(notelists);
+    })
+    .catch(function(error) {
+      console.error('Error getting notes: ', error);
+    });
+  }
+  viewnotes();
+})
+
+  
