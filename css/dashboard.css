@@ -134,3 +134,14 @@ hr{
   font-size: 11px;
   color: #aba9a9;
 }
+
+/* Body area */
+
+div#editor {
+  color: #fff;
+}
+div#editor p{
+  margin: 0 !important;
+}
+
+span.fr-placeholder {display: none !important;}

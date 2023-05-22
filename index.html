@@ -5,7 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <title>Mydocs</title>
+	<link rel="icon" href="./assets/img/logo2.png">
 	<link href="./assets/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Text Editor -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="./css/texteditor/froala_editor.css">
+	<link rel="stylesheet" href="./css/texteditor/froala_style.css">
+	<link rel="stylesheet" href="./css/texteditor/plugins/code_view.css">
+	<link rel="stylesheet" href="./css/texteditor/plugins/colors.css">
+	<link rel="stylesheet" href="./css/texteditor/plugins/emoticons.css">
+	<link rel="stylesheet" href="./css/texteditor/plugins/image_manager.css">
+	<link rel="stylesheet" href="./css/texteditor/plugins/image.css">
+	<link rel="stylesheet" href="./css/texteditor/plugins/line_breaker.css">
+	<link rel="stylesheet" href="./css/texteditor/plugins/quick_insert.css">
+	<link rel="stylesheet" href="./css/texteditor/plugins/table.css">
+	<link rel="stylesheet" href="./css/texteditor/plugins/file.css">
+	<link rel="stylesheet" href="./css/texteditor/plugins/char_counter.css">
+	<link rel="stylesheet" href="./css/texteditor/plugins/video.css">
+	<link rel="stylesheet" href="./css/texteditor/plugins/emoticons.css">
+	<link rel="stylesheet" href="./css/texteditor/plugins/fullscreen.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
+
     <!-- Custom styles for this template -->
     <link href="./css/dashboard.css" rel="stylesheet">
 </head>
@@ -14,6 +35,7 @@
 		<!-- Sidebar -->
 		<div class="d-flex flex-column flex-shrink-0 p-3 col-md-2" style="height: 100vh; background: #000000">
 			<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+				<img src="./assets/img/logo_white.png" width="40" height="40" alt="logo">
 			  	<span class="fs-4">Mydocs</span>
 			</a>
 			<br>
@@ -72,8 +94,14 @@
 				<span class="fs-4">Body</span>
 			</a>
 			<br>
+			<div id="editor">
+				<div id='edit'>
+				</div>
+			</div>
 		</div>
 	</main>
+	<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+
 	<!-- Text Editor -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
@@ -81,27 +109,48 @@
 	<script type="text/javascript" src="./js/texteditor/plugins/align.min.js"></script>
 	<script type="text/javascript" src="./js/texteditor/plugins/code_beautifier.min.js"></script>
 	<script type="text/javascript" src="./js/texteditor/plugins/code_view.min.js"></script>
+	<script type="text/javascript" src="./js/texteditor/plugins/colors.min.js"></script>
+	<script type="text/javascript" src="./js/texteditor/plugins/emoticons.min.js"></script>
 	<script type="text/javascript" src="./js/texteditor/plugins/draggable.min.js"></script>
+	<script type="text/javascript" src="./js/texteditor/plugins/font_size.min.js"></script>
+	<script type="text/javascript" src="./js/texteditor/plugins/font_family.min.js"></script>
 	<script type="text/javascript" src="./js/texteditor/plugins/image.min.js"></script>
 	<script type="text/javascript" src="./js/texteditor/plugins/image_manager.min.js"></script>
+	<script type="text/javascript" src="./js/texteditor/plugins/line_breaker.min.js"></script>
+	<script type="text/javascript" src="./js/texteditor/plugins/quick_insert.min.js"></script>
 	<script type="text/javascript" src="./js/texteditor/plugins/link.min.js"></script>
 	<script type="text/javascript" src="./js/texteditor/plugins/lists.min.js"></script>
 	<script type="text/javascript" src="./js/texteditor/plugins/paragraph_format.min.js"></script>
 	<script type="text/javascript" src="./js/texteditor/plugins/paragraph_style.min.js"></script>
-	<script type="text/javascript" src="./js/texteditor/plugins/table.min.js"></script>
 	<script type="text/javascript" src="./js/texteditor/plugins/video.min.js"></script>
+	<script type="text/javascript" src="./js/texteditor/plugins/table.min.js"></script>
 	<script type="text/javascript" src="./js/texteditor/plugins/url.min.js"></script>
+	<script type="text/javascript" src="./js/texteditor/plugins/emoticons.min.js"></script>
+	<script type="text/javascript" src="./js/texteditor/plugins/file.min.js"></script>
 	<script type="text/javascript" src="./js/texteditor/plugins/entities.min.js"></script>
+	<script type="text/javascript" src="./js/texteditor/plugins/inline_style.min.js"></script>
+	<script type="text/javascript" src="./js/texteditor/plugins/save.min.js"></script>
+	<script type="text/javascript" src="./js/texteditor/plugins/fullscreen.min.js"></script>
 
 	<!-- Any other -->
 
 	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 	<script src="./config.js"></script>
     <script src="./assets/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js" integrity="sha384-gdQErvCNWvHQZj6XZM0dNsAoY4v+j5P1XDpNkcM3HJG1Yx04ecqIHk7+4VBOCHOG" crossorigin="anonymous"></script>
 	<script src="./js/dashboard.js"></script>
+	<script>
+		// $(function(){
+		// 	$('#edit').froalaEditor({
+		// 		toolbarInline: true,
+		// 		toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'color', 'emoticons', '-', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'indent', 'outdent', '-', 'insertImage', 'insertLink', 'insertFile', 'insertVideo', 'undo', 'redo'],
+		// 		toolbarButtonsXS: null,
+		// 		toolbarButtonsSM: null,
+		// 		toolbarButtonsMD: null
+		// 	})
+		// });
+	</script>
 </body>
 </html>
